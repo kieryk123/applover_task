@@ -1,0 +1,15 @@
+@import "assets/_normalize";
+@import "assets/_fonts";
+@import "assets/_variables";
+@import "assets/_mixins";
+
+// general styles
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: $font-primary;
+    background-color: #fff;
+    color: $font-color-primary;
+}
