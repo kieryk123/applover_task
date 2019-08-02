@@ -42,7 +42,19 @@ export default {
 	}
 
 	&__content-col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
 
+        & > * {
+            margin-left: 10px;
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
 	}
 }
 </style>
