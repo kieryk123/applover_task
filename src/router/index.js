@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '@/store';
 import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
-import store from '@/store';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
@@ -14,12 +14,8 @@ export default new Router({
             path: '/',
             name: 'home',
             component: Home,
-            beforeEnter: (to, from, next) => {
-                if (store.state.authToken) {
-                    next();
-                } else {
-                    next('/login');
-                }
+            meta: {
+                requiresAuth: true
             }
         },
         {
@@ -33,3 +29,17 @@ export default new Router({
         }
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(route => route.meta.requiresAuth)) {
+        if (store.state.authToken) {
+            next();
+            return;
+        }
+        next('/login');
+    } else {
+        next();
+    }
+});
+
+export default router;
