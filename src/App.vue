@@ -7,7 +7,7 @@
         <AppNotification
             v-if="isNotificationVisible"
             :text="notification"
-            @close="$store.dispatch('closeNotification')"
+            @close="$store.dispatch('notification/close')"
         />
         <AppHeader>
             <span>Select language:</span>
@@ -37,25 +37,34 @@ import { mapGetters, mapState } from 'vuex';
 
 export default {
     created() {
-        this.$store.dispatch('tryAutoSignIn');
+        this.$store.dispatch('auth/tryAutoSignIn');
     },
     computed: {
-        ...mapGetters([
-            'isLoadingInProgress',
-            'loadingValue',
-            'isNotificationVisible',
-            'isUserAuthenticated'
+        // mapGetters
+        ...mapGetters('loading', {
+            isLoadingInProgress: 'isInProgress',
+            loadingValue: 'value'
+        }),
+        ...mapGetters('notification', {
+            isNotificationVisible: 'isVisible'
+        }),
+        ...mapGetters('auth', [
+            'isUserAuthenticated',
         ]),
-        ...mapState([
+
+        // mapState
+        ...mapState('notification', [
             'notification',
-            'languagesList'
+        ]),
+        ...mapState('locale', [
+            'languagesList',
         ]),
         selectedLanguage: {
             set(language) {
-                this.$store.commit('SET_LANGUAGE', language);
+                this.$store.commit('locale/SET_LANGUAGE', language);
             },
             get() {
-                return this.$store.state.selectedLanguage;
+                return this.$store.state['locale'].selectedLanguage;
             }
         }
     },
