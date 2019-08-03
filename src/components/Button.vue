@@ -3,7 +3,8 @@
         :class="[
             'btn',
             props.modifier ? `btn--${props.modifier}` : '',
-            props.disabled ? 'btn--disabled' : ''
+            props.disabled ? 'btn--disabled' : '',
+            props.small ? 'btn--small' : ''
         ]"
         :type="props.submit ? 'submit' : 'button'"
         :disabled="props.disabled"
@@ -24,6 +25,10 @@ export default {
             required: false
         },
         disabled: {
+            type: Boolean,
+            required: false
+        },
+        small: {
             type: Boolean,
             required: false
         }
@@ -51,12 +56,25 @@ export default {
         color: white;
     }
 
+    &--secondary {
+        background-color: #77779D;
+        color: white;
+    }
+
     &--disabled {
         opacity: 0.6;
 
         &:hover {
             cursor: not-allowed;
         }
+    }
+
+    &--small {
+        width: auto;
+        min-height: 32px;
+        padding: 5px 8px;
+        font-size: 14px;
+        border-radius: 3px;
     }
 }
 </style>

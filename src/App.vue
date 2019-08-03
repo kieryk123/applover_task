@@ -18,6 +18,7 @@
             <Button
                 v-if="isUserAuthenticated"
                 modifier="secondary"
+                small
             >My organization</Button>
         </AppHeader>
         <div class="app__main">
@@ -31,6 +32,7 @@ import AppHeader from '@/components/App/AppHeader.vue';
 import AppNotification from '@/components/App/AppNotification.vue';
 import AppProgress from '@/components/App/AppProgress.vue';
 import Select from '@/components/Select.vue';
+import Button from '@/components/Button.vue';
 import { mapGetters, mapState } from 'vuex';
 
 export default {
@@ -65,6 +67,7 @@ export default {
         AppNotification,
         AppProgress,
         Select,
+        Button
     }
 }
 </script>
