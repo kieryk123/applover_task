@@ -1,17 +1,24 @@
 <template>
     <div class="app">
         <AppProgress
-            v-if="$store.getters.isLoadingInProgress"
-            :value="$store.getters.loadingValue"
+            v-if="isLoadingInProgress"
+            :value="loadingValue"
         />
         <AppNotification
-            v-if="$store.getters.isNotificationVisible"
-            :text="$store.state.notification"
+            v-if="isNotificationVisible"
+            :text="notification"
             @close="$store.dispatch('closeNotification')"
         />
         <AppHeader>
             <span>Select language:</span>
-            <Select :options="$store.state.languagesList" v-model="selectedLanguage" />
+            <Select
+                v-model="selectedLanguage"
+                :options="languagesList"
+            />
+            <Button
+                v-if="isUserAuthenticated"
+                modifier="secondary"
+            >My organization</Button>
         </AppHeader>
         <div class="app__main">
             <router-view></router-view>
@@ -20,16 +27,27 @@
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue';
+import AppHeader from '@/components/App/AppHeader.vue';
+import AppNotification from '@/components/App/AppNotification.vue';
+import AppProgress from '@/components/App/AppProgress.vue';
 import Select from '@/components/Select.vue';
-import AppNotification from '@/components/AppNotification.vue';
-import AppProgress from '@/components/AppProgress.vue';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
     created() {
         this.$store.dispatch('tryAutoSignIn');
     },
     computed: {
+        ...mapGetters([
+            'isLoadingInProgress',
+            'loadingValue',
+            'isNotificationVisible',
+            'isUserAuthenticated'
+        ]),
+        ...mapState([
+            'notification',
+            'languagesList'
+        ]),
         selectedLanguage: {
             set(language) {
                 this.$store.commit('SET_LANGUAGE', language);

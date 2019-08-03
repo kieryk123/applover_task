@@ -118,6 +118,9 @@ export default new Vuex.Store({
         },
         loadingValue(state) {
             return state.loading.value;
+        },
+        isUserAuthenticated(state) {
+            return state.authToken ? true : false;
         }
     }
 });

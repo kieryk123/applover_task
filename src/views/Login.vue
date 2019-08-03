@@ -33,15 +33,15 @@
 </template>
 
 <script>
-import FormInput from '@/components/FormInput.vue';
-import FormCheckbox from '@/components/FormCheckbox.vue';
+import FormInput from '@/components/Form/FormInput.vue';
+import FormCheckbox from '@/components/Form/FormCheckbox.vue';
 import Button from '@/components/Button.vue';
 
 export default {
     data: () => ({
         formData: {
-            email: 'login@applover.pl',
-            password: 'password123',
+            email: '', // login@applover.pl
+            password: '', // password123
             keepLoggedIn: false
         }
     }),
