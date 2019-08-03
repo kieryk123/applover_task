@@ -26,6 +26,7 @@
             <Button
                 submit
                 modifier="primary"
+                :disabled="$store.getters.isLoadingInProgress"
             >Login</Button>
         </form>
     </div>

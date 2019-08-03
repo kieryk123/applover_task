@@ -1,5 +1,9 @@
 <template>
     <div class="app">
+        <AppProgress
+            v-if="$store.getters.isLoadingInProgress"
+            :value="$store.getters.loadingValue" 
+        />
         <AppNotification
             v-if="$store.getters.isNotificationVisible"
             :text="$store.state.notification"
@@ -19,6 +23,7 @@
 import AppHeader from '@/components/AppHeader.vue';
 import Select from '@/components/Select.vue';
 import AppNotification from '@/components/AppNotification.vue';
+import AppProgress from '@/components/AppProgress.vue';
 
 export default {
     computed: {
@@ -37,6 +42,7 @@ export default {
     components: {
         AppHeader,
         AppNotification,
+        AppProgress,
         Select,
     }
 }

@@ -11,7 +11,11 @@ export default new Vuex.Store({
             { name: 'English', value: 'EN' },
             { name: 'Polish', value: 'PL' }
         ],
-        notification: ''
+        notification: '',
+        loading: {
+            inProgress: false,
+            value: 0
+        }
     },
     mutations: {
         'SET_LANGUAGE'(state, payload) {
@@ -19,14 +23,24 @@ export default new Vuex.Store({
         },
         'SET_NOTIFICATION'(state, payload) {
             state.notification = payload;
+        },
+        'UPDATE_LOADING'(state, payload) {
+            state.loading.inProgress = payload;
+        },
+        'SET_LOADING_VALUE'(state, payload) {
+            state.loading.value = payload;
         }
     },
     actions: {
         signIn({ commit, dispatch }, formData) {
+            dispatch('updateLoading', true);
+            setTimeout(() => dispatch('setLoadingValue', 60), 100);
+
             const authData =  {
                 email: formData.email,
                 password: formData.password
             };
+
             AuthService.signIn(authData)
                 .then(res => {
                     const data = res.data;
@@ -39,6 +53,7 @@ export default new Vuex.Store({
 
                     if (status === 200) {
                         dispatch('closeNotification');
+                        dispatch('resetLoading');
                     }
                 })
                 .catch(err => {
@@ -51,9 +66,11 @@ export default new Vuex.Store({
                     switch (status) {
                         case 500:
                             commit('SET_NOTIFICATION', 'Server error. Prease try again later.');
+                            dispatch('resetLoading');
                             break;
                         case 401:
                             commit('SET_NOTIFICATION', 'Invalid email or password.');
+                            dispatch('resetLoading');
                         default:
                             break;
                     }
@@ -61,11 +78,31 @@ export default new Vuex.Store({
         },
         closeNotification({ commit }) {
             commit('SET_NOTIFICATION', '');
+        },
+        updateLoading({ commit }, value) {
+            commit('UPDATE_LOADING', value);
+        },
+        setLoadingValue({ commit }, value) {
+            commit('SET_LOADING_VALUE', value);
+        },
+        resetLoading({ commit }) {
+            commit('SET_LOADING_VALUE', 100);
+
+            setTimeout(() => {
+                commit('UPDATE_LOADING', false);
+                commit('SET_LOADING_VALUE', 0);
+            }, 100);
         }
     },
     getters: {
         isNotificationVisible(state) {
             return state.notification.length > 0 ? true : false;
+        },
+        isLoadingInProgress(state) {
+            return state.loading.inProgress ? true : false;
+        },
+        loadingValue(state) {
+            return state.loading.value;
         }
     }
 });

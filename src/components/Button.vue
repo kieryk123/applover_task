@@ -1,7 +1,12 @@
 <template functional>
     <button
-        :class="['btn', props.modifier ? `btn--${props.modifier}` : '']"
+        :class="[
+            'btn',
+            props.modifier ? `btn--${props.modifier}` : '',
+            props.disabled ? 'btn--disabled' : ''
+        ]"
         :type="props.submit ? 'submit' : 'button'"
+        :disabled="props.disabled"
     >
         <slot></slot>
     </button>
@@ -15,6 +20,10 @@ export default {
             required: false
         },
         submit: {
+            type: Boolean,
+            required: false
+        },
+        disabled: {
             type: Boolean,
             required: false
         }
@@ -40,6 +49,14 @@ export default {
     &--primary {
         background-color: #1DE278;
         color: white;
+    }
+
+    &--disabled {
+        opacity: 0.6;
+
+        &:hover {
+            cursor: not-allowed;
+        }
     }
 }
 </style>
