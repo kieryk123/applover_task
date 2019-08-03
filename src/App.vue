@@ -2,7 +2,7 @@
     <div class="app">
         <AppProgress
             v-if="$store.getters.isLoadingInProgress"
-            :value="$store.getters.loadingValue" 
+            :value="$store.getters.loadingValue"
         />
         <AppNotification
             v-if="$store.getters.isNotificationVisible"
@@ -26,6 +26,9 @@ import AppNotification from '@/components/AppNotification.vue';
 import AppProgress from '@/components/AppProgress.vue';
 
 export default {
+    created() {
+        this.$store.dispatch('tryAutoSignIn');
+    },
     computed: {
         selectedLanguage: {
             set(language) {

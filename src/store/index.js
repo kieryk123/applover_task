@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import router from '@/router';
 import AuthService from '@/services/AuthService.js';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        authToken: null,
         selectedLanguage: 'EN',
         languagesList: [
             { name: 'English', value: 'EN' },
@@ -29,7 +31,10 @@ export default new Vuex.Store({
         },
         'SET_LOADING_VALUE'(state, payload) {
             state.loading.value = payload;
-        }
+        },
+        'AUTH_USER'(state, authToken) {
+            state.authToken = authToken;
+        },
     },
     actions: {
         signIn({ commit, dispatch }, formData) {
@@ -46,15 +51,19 @@ export default new Vuex.Store({
                     const data = res.data;
                     const status = res.status;
                     const authToken = data.token;
-                    localStorage.setItem('authToken', authToken);
+
+                    if (formData.keepLoggedIn) {
+                        localStorage.setItem('authToken', authToken);
+                    }
+
                     console.log(res);
                     console.log(data);
                     console.log('status:', status);
 
-                    if (status === 200) {
-                        dispatch('closeNotification');
-                        dispatch('resetLoading');
-                    }
+                    commit('AUTH_USER', authToken);
+                    dispatch('closeNotification');
+                    dispatch('resetLoading');
+                    router.push('/');
                 })
                 .catch(err => {
                     const res = err.response;
@@ -75,6 +84,12 @@ export default new Vuex.Store({
                             break;
                     }
                 });
+        },
+        tryAutoSignIn({ commit, dispatch }) {
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) return;
+            commit('AUTH_USER', authToken);
+            router.push('/');
         },
         closeNotification({ commit }) {
             commit('SET_NOTIFICATION', '');
