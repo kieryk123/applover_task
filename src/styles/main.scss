@@ -3,6 +3,8 @@
 @import "assets/_variables";
 @import "assets/_mixins";
 
+
+
 // general styles
 * {
     box-sizing: border-box;
@@ -12,4 +14,13 @@ body, html {
     font-family: $font-primary;
     background-color: #fff;
     color: $font-color-primary;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    min-height: 100%;
 }

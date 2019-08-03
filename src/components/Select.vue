@@ -56,7 +56,7 @@ export default {
         position: relative;
         border: 1px solid #909090;
         border-radius: 3px;
-        padding: 7px 50px 7px 16px;
+        padding: 7px 27px 7px 16px;
         min-width: 112px;
         max-width: 112px;
         font-size: 14px;
