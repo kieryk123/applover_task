@@ -19,7 +19,11 @@
                 v-if="isUserAuthenticated"
                 modifier="secondary"
                 small
+                @click="toggleDetailsTooltip"
             >My organization</Button>
+            <div v-if="detailsTooltipVisibility">
+                {{ organizationDetails }}
+            </div>
         </AppHeader>
         <div class="app__main">
             <router-view></router-view>
@@ -39,6 +43,9 @@ export default {
     created() {
         this.$store.dispatch('auth/tryAutoSignIn');
     },
+    data: () => ({
+        detailsTooltipVisibility: false
+    }),
     computed: {
         // mapGetters
         ...mapGetters('loading', {
@@ -51,6 +58,9 @@ export default {
         ...mapGetters('auth', [
             'isUserAuthenticated',
         ]),
+        ...mapGetters('organization', {
+            organizationDetails: 'details'
+        }),
 
         // mapState
         ...mapState('notification', [
@@ -69,7 +79,12 @@ export default {
         }
     },
     methods: {
-
+        toggleDetailsTooltip() {
+            if (!this.organizationDetails) {
+                this.$store.dispatch('organization/getDetails');
+            }
+            this.detailsTooltipVisibility = !this.detailsTooltipVisibility;
+        }
     },
     components: {
         AppHeader,

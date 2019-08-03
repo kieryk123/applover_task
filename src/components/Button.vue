@@ -8,6 +8,7 @@
         ]"
         :type="props.submit ? 'submit' : 'button'"
         :disabled="props.disabled"
+        @click="listeners.click"
     >
         <slot></slot>
     </button>
