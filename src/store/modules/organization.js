@@ -13,11 +13,13 @@ export const mutations = {
 
 export const actions = {
     getDetails({ commit }) {
+        if (state.details) {
+            return;
+        }
         OrganizationService.getDetails()
             .then(res => {
                 const data = res.data;
                 commit('SET_DETAILS', data);
-                console.log(res.data);
             })
             .catch(err => {
                 console.log(err);

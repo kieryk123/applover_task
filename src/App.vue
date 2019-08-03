@@ -15,15 +15,25 @@
                 v-model="selectedLanguage"
                 :options="languagesList"
             />
-            <Button
+            <Tooltip
                 v-if="isUserAuthenticated"
-                modifier="secondary"
-                small
-                @click="toggleDetailsTooltip"
-            >My organization</Button>
-            <div v-if="detailsTooltipVisibility">
-                {{ organizationDetails }}
-            </div>
+                size="big"
+                :action="() => $store.dispatch('organization/getDetails')"
+            >
+                <template v-slot:activator="{ toggle }">
+                    <Button
+                        v-if="isUserAuthenticated"
+                        modifier="secondary"
+                        small
+                        @click="toggle"
+                    >My organization</Button>
+                </template>
+                <template #content>
+                    <p v-for="(value, propertyName) in organizationDetails">
+                        <strong>{{ propertyName }}</strong>: {{ value }}
+                    </p>
+                </template>
+            </Tooltip>
         </AppHeader>
         <div class="app__main">
             <router-view></router-view>
@@ -37,15 +47,13 @@ import AppNotification from '@/components/App/AppNotification.vue';
 import AppProgress from '@/components/App/AppProgress.vue';
 import Select from '@/components/Select.vue';
 import Button from '@/components/Button.vue';
+import Tooltip from '@/components/Tooltip.vue';
 import { mapGetters, mapState } from 'vuex';
 
 export default {
     created() {
         this.$store.dispatch('auth/tryAutoSignIn');
     },
-    data: () => ({
-        detailsTooltipVisibility: false
-    }),
     computed: {
         // mapGetters
         ...mapGetters('loading', {
@@ -78,20 +86,13 @@ export default {
             }
         }
     },
-    methods: {
-        toggleDetailsTooltip() {
-            if (!this.organizationDetails) {
-                this.$store.dispatch('organization/getDetails');
-            }
-            this.detailsTooltipVisibility = !this.detailsTooltipVisibility;
-        }
-    },
     components: {
         AppHeader,
         AppNotification,
         AppProgress,
         Select,
-        Button
+        Button,
+        Tooltip
     }
 }
 </script>
