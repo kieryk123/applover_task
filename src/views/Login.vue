@@ -39,13 +39,14 @@ import Button from '@/components/Button.vue';
 export default {
     data: () => ({
         formData: {
-            email: '',
-            password: '',
+            email: 'login@applover.pl',
+            password: 'password123',
             keepLoggedIn: false
         }
     }),
     methods: {
         submitForm() {
+            this.$store.dispatch('signIn', this.formData);
             console.log({...this.formData});
         }
     },

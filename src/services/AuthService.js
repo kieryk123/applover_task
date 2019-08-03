@@ -10,6 +10,6 @@ const apiClient = axios.create({
 
 export default {
     signIn(authData) {
-        return apiClient.post('/api/v1/login', {...authData});
+        return apiClient.post('/v1/login', {...authData});
     }
 }

@@ -1,5 +1,10 @@
 <template>
     <div class="app">
+        <AppNotification
+            v-if="$store.getters.isNotificationVisible"
+            :text="$store.state.notification"
+            @close="$store.dispatch('closeNotification')"
+        />
         <AppHeader>
             <span>Select language:</span>
             <Select :options="$store.state.languagesList" v-model="selectedLanguage" />
@@ -13,6 +18,7 @@
 <script>
 import AppHeader from '@/components/AppHeader.vue';
 import Select from '@/components/Select.vue';
+import AppNotification from '@/components/AppNotification.vue';
 
 export default {
     computed: {
@@ -25,9 +31,13 @@ export default {
             }
         }
     },
+    methods: {
+
+    },
     components: {
         AppHeader,
-        Select
+        AppNotification,
+        Select,
     }
 }
 </script>
