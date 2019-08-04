@@ -10,6 +10,7 @@
         >
             <div
                 v-for="option in options"
+                :key="option.value"
                 :class="[
                     'select__list-item',
                     option.value === value ? 'select__list-item--active' : ''

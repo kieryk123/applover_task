@@ -29,7 +29,10 @@
                     >My organization</Button>
                 </template>
                 <template #content>
-                    <p v-for="(value, propertyName) in organizationDetails">
+                    <p
+                        v-for="(value, propertyName, index) in organizationDetails"
+                        :key="index"
+                    >
                         <strong>{{ propertyName }}</strong>: {{ value }}
                     </p>
                 </template>
