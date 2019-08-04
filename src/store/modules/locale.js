@@ -1,10 +1,10 @@
 export const namespaced = true;
 
 export const state = {
-    selectedLanguage: 'EN',
+    selectedLanguage: 'en-US',
     languagesList: [
-        { name: 'English', value: 'EN' },
-        { name: 'Polish', value: 'PL' }
+        { name: 'English', value: 'en-US' },
+        { name: 'Polish', value: 'pl-PL' }
     ],
 };
 
@@ -15,9 +15,17 @@ export const mutations = {
 };
 
 export const actions = {
+    checkBrowserLanguage({ commit }) {
+        const browserLanguage = window.navigator.language;
 
+        if (browserLanguage.includes('en')) {
+            commit('SET_LANGUAGE', 'en-US');
+        } else {
+            commit('SET_LANGUAGE', browserLanguage);
+        }
+    }
 };
 
 export const getters = {
-    
+
 };

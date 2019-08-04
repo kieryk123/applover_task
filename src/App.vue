@@ -53,6 +53,7 @@ import { mapGetters, mapState } from 'vuex';
 export default {
     created() {
         this.$store.dispatch('auth/tryAutoSignIn');
+        this.$store.dispatch('locale/checkBrowserLanguage');
     },
     computed: {
         // mapGetters
