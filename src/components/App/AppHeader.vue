@@ -1,5 +1,5 @@
 <template functional>
-    <div class="app-header">
+    <header class="app-header">
         <div class="app-header__logo-col">
             <img
                 :src="require('@/images/logo.png')"
@@ -11,7 +11,7 @@
         <div class="app-header__content-col">
             <slot></slot>
         </div>
-    </div>
+    </header>
 </template>
 
 <script>

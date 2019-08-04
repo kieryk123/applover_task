@@ -8,7 +8,7 @@
         ]"
         :type="props.submit ? 'submit' : 'button'"
         :disabled="props.disabled"
-        @click="listeners.click"
+        v-on="props.submit ? null : { click: listeners.click }"
     >
         <slot></slot>
     </button>

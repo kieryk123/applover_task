@@ -1,11 +1,11 @@
 <template>
-    <div class="progress">
+    <aside class="progress">
         <div class="progress__title">Processing...</div>
         <div class="progress__bar">
             <div class="progress__bar-line" :style="`width: ${value}%`"></div>
             <span class="progress__bar-percentage">{{ value }}%</span>
         </div>
-    </div>
+    </aside>
 </template>
 
 <script>

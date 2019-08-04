@@ -38,9 +38,9 @@
                 </template>
             </Tooltip>
         </AppHeader>
-        <div class="app__main">
+        <main class="app__main">
             <router-view></router-view>
-        </div>
+        </main>
     </div>
 </template>
 

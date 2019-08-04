@@ -26,7 +26,7 @@
             <Button
                 submit
                 modifier="primary"
-                :disabled="$store.getters.isLoadingInProgress"
+                :disabled="isLoadingInProgress"
             >Login</Button>
         </form>
     </div>
@@ -36,6 +36,7 @@
 import FormInput from '@/components/Form/FormInput.vue';
 import FormCheckbox from '@/components/Form/FormCheckbox.vue';
 import Button from '@/components/Button.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     data: () => ({
@@ -45,6 +46,11 @@ export default {
             keepLoggedIn: false
         }
     }),
+    computed: {
+        ...mapGetters('loading', {
+            isLoadingInProgress: 'isInProgress'
+        }),
+    },
     methods: {
         submitForm() {
             this.$store.dispatch('auth/signIn', this.formData);
