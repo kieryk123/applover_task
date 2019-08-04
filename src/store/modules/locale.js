@@ -17,7 +17,7 @@ export const mutations = {
 export const actions = {
     checkBrowserLanguage({ commit, state }) {
         const browserLanguage = window.navigator.language;
-        const isLanguageAvailable = state.languagesList.find(el => el.value === browserLanguage);
+        const isLanguageAvailable = state.languagesList.findIndex(el => el.value === browserLanguage) != -1 ? true : false;
 
         if (isLanguageAvailable) {
             if (browserLanguage.includes('en')) {
