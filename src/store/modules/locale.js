@@ -15,13 +15,18 @@ export const mutations = {
 };
 
 export const actions = {
-    checkBrowserLanguage({ commit }) {
+    checkBrowserLanguage({ commit, state }) {
         const browserLanguage = window.navigator.language;
+        const isLanguageAvailable = state.languagesList.find(el => el.value === browserLanguage);
 
-        if (browserLanguage.includes('en')) {
-            commit('SET_LANGUAGE', 'en-US');
+        if (isLanguageAvailable) {
+            if (browserLanguage.includes('en')) {
+                commit('SET_LANGUAGE', 'en-US');
+            } else {
+                commit('SET_LANGUAGE', browserLanguage);
+            }
         } else {
-            commit('SET_LANGUAGE', browserLanguage);
+            commit('SET_LANGUAGE', 'en-US');
         }
     }
 };
