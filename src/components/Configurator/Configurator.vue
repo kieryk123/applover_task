@@ -18,7 +18,19 @@
                         </template>
 
                         <template #body>
-                            
+                            <FormRadio
+                                id="single-door-type"
+                                name="door-type"
+                                v-model="door.type"
+                                value-to-set="single"
+                            >Single door</FormRadio>
+
+                            <FormRadio
+                                id="double-door-type"
+                                name="door-type"
+                                v-model="door.type"
+                                value-to-set="double"
+                            >Double door</FormRadio>
                         </template>
                     </ConfiguratorStepGroup>
 
@@ -38,15 +50,23 @@
 </template>
 
 <script>
+// Configurator related components
 import ConfiguratorWizard from '@/components/Configurator/ConfiguratorWizard.vue';
 import ConfiguratorStep from '@/components/Configurator/ConfiguratorStep.vue';
 import ConfiguratorStepGroup from '@/components/Configurator/ConfiguratorStepGroup.vue';
+
+// Form related components
+import FormRadio from '@/components/Form/FormRadio.vue';
 
 export default {
     data: () => ({
         configSteps: ['choose door', 'choose division', 'choose color'],
         currentStep: 1,
-        test: ''
+        door: {
+            type: 'single',
+            width: '',
+            height: ''
+        }
     }),
     methods: {
         nextStep() {
@@ -65,7 +85,8 @@ export default {
     components: {
         ConfiguratorWizard,
         ConfiguratorStep,
-        ConfiguratorStepGroup
+        ConfiguratorStepGroup,
+        FormRadio
     }
 }
 </script>

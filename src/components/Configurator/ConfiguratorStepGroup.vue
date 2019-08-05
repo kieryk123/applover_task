@@ -25,9 +25,9 @@ export default {
         border-bottom: 1px solid rgba(#848C93, 0.2);
         padding-bottom: 5px;
 
-        span,
-        div,
-        p {
+        & > span,
+        & > div,
+        & > p {
             display: block;
         }
 	}
