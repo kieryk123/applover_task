@@ -73,7 +73,18 @@
                         </template>
 
                         <template #body>
-
+                            <CounterInput
+                                v-model.number="door.beams"
+                                id="door-beams"
+                                name="door-beams"
+                                label="Number of beams"
+                            />
+                            <CounterInput
+                                v-model.number="door.posts"
+                                id="door-posts"
+                                name="door-posts"
+                                label="Number of posts"
+                            />
                         </template>
                     </ConfiguratorStepGroup>
 
@@ -103,16 +114,19 @@ import ConfiguratorStepGroup from '@/components/Configurator/ConfiguratorStepGro
 // other components
 import FormRadio from '@/components/Form/FormRadio.vue';
 import DimensionInput from '@/components/DimensionInput.vue';
+import CounterInput from '@/components/CounterInput.vue';
 import Button from '@/components/Button.vue';
 
 export default {
     data: () => ({
         steps: ['choose door', 'choose division', 'choose color'],
-        currentStep: 1,
+        currentStep: 2,
         door: {
             type: 'single',
-            width: '',
-            height: ''
+            width: 120,
+            height: 250,
+            beams: 4,
+            posts: 2
         }
     }),
     methods: {
@@ -135,6 +149,7 @@ export default {
         ConfiguratorStepGroup,
         FormRadio,
         DimensionInput,
+        CounterInput,
         Button
     }
 }
@@ -155,16 +170,16 @@ export default {
 	}
 
 	&__visualization-wrapper {
-        flex-basis: 72.5%;
-        max-width: 72.5%;
+        flex-basis: 70%;
+        max-width: 70%;
         min-height: 475px;
         border: 1px solid #E6E6E6;
         padding: 25px;
 	}
 
 	&__options-wrapper {
-        flex-basis: 27.5%;
-        max-width: 27.5%;
+        flex-basis: 30%;
+        max-width: 30%;
         padding: 20px 30px;
 	}
 }
