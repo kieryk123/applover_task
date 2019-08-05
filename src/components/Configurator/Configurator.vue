@@ -40,7 +40,20 @@
                         </template>
 
                         <template #body>
-
+                            <DimensionInput
+                                v-model.number="door.width"
+                                id="door-width"
+                                name="door-width"
+                                label="Width"
+                                unit="cm"
+                            />
+                            <DimensionInput
+                                v-model.number="door.height"
+                                id="door-width"
+                                name="door-width"
+                                label="Height"
+                                unit="cm"
+                            />
                         </template>
                     </ConfiguratorStepGroup>
                 </ConfiguratorStep>
@@ -55,8 +68,9 @@ import ConfiguratorWizard from '@/components/Configurator/ConfiguratorWizard.vue
 import ConfiguratorStep from '@/components/Configurator/ConfiguratorStep.vue';
 import ConfiguratorStepGroup from '@/components/Configurator/ConfiguratorStepGroup.vue';
 
-// Form related components
+// other components
 import FormRadio from '@/components/Form/FormRadio.vue';
+import DimensionInput from '@/components/DimensionInput.vue';
 
 export default {
     data: () => ({
@@ -86,7 +100,8 @@ export default {
         ConfiguratorWizard,
         ConfiguratorStep,
         ConfiguratorStepGroup,
-        FormRadio
+        FormRadio,
+        DimensionInput
     }
 }
 </script>

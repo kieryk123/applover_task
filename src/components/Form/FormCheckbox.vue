@@ -1,7 +1,7 @@
 <template>
-    <label class="checkbox" :for="id">
+    <label class="form-checkbox" :for="id">
         <input
-            class="checkbox__input"
+            class="form-checkbox__input"
             type="checkbox"
             :id="id"
             :name="id"
@@ -9,7 +9,7 @@
             @change="$emit('input', $event.target.checked)"
             @blur="$emit('blur')"
         />
-        <span class="checkbox__placeholder">{{ placeholder }}</span>
+        <span class="form-checkbox__placeholder">{{ placeholder }}</span>
     </label>
 </template>
 
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
-.checkbox {
+.form-checkbox {
     display: flex;
     align-items: center;
     margin-top: 20px;
