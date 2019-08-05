@@ -62,6 +62,30 @@ export default {
         color: white;
     }
 
+    &--configurator {
+        background-color: #6F91AA;
+        color: white;
+        text-transform: uppercase;
+        padding: 6px 27px;
+        font-size: 13px;
+        min-height: 0;
+        border-radius: 0;
+        border: 2px solid #6F91AA;
+        width: 100%;
+    }
+
+    &--configurator-outlined {
+        background-color: white;
+        color: #6F91AA;
+        text-transform: uppercase;
+        padding: 6px 27px;
+        font-size: 13px;
+        min-height: 0;
+        border-radius: 0;
+        width: 100%;
+        border: 2px solid #6F91AA;
+    }
+
     &--disabled {
         opacity: 0.6;
 

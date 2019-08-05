@@ -3,7 +3,7 @@
         <div class="configurator__head">
             <ConfiguratorWizard
                 :current-step="currentStep"
-                :steps="configSteps"
+                :steps="steps"
             />
         </div>
         <div class="configurator__body">
@@ -11,6 +11,7 @@
 
             </div>
             <div class="configurator__options-wrapper">
+                <!-- ### STEP 1 ### -->
                 <ConfiguratorStep v-if="currentStep === 1">
                     <ConfiguratorStepGroup>
                         <template #head>
@@ -56,6 +57,48 @@
                             />
                         </template>
                     </ConfiguratorStepGroup>
+
+                    <template #footer>
+                        <Button
+                            @click="nextStep"
+                            modifier="configurator"
+                        >Next step</Button>
+                    </template>
+                </ConfiguratorStep>
+
+                <!-- ### STEP 2 ### -->
+                <ConfiguratorStep v-if="currentStep === 2">
+                    <ConfiguratorStepGroup>
+                        <template #head>
+
+                        </template>
+
+                        <template #body>
+
+                        </template>
+                    </ConfiguratorStepGroup>
+
+                    <ConfiguratorStepGroup>
+                        <template #head>
+
+                        </template>
+
+                        <template #body>
+
+                        </template>
+                    </ConfiguratorStepGroup>
+
+                    <template #footer>
+                        <Button
+                            @click="previousStep"
+                            modifier="configurator-outlined"
+                        >back</Button>
+
+                        <Button
+                            @click="nextStep"
+                            modifier="configurator"
+                        >Next step</Button>
+                    </template>
                 </ConfiguratorStep>
             </div>
         </div>
@@ -71,10 +114,11 @@ import ConfiguratorStepGroup from '@/components/Configurator/ConfiguratorStepGro
 // other components
 import FormRadio from '@/components/Form/FormRadio.vue';
 import DimensionInput from '@/components/DimensionInput.vue';
+import Button from '@/components/Button.vue';
 
 export default {
     data: () => ({
-        configSteps: ['choose door', 'choose division', 'choose color'],
+        steps: ['choose door', 'choose division', 'choose color'],
         currentStep: 1,
         door: {
             type: 'single',
@@ -84,16 +128,16 @@ export default {
     }),
     methods: {
         nextStep() {
-            if (this.currentStep === configSteps.length) {
+            if (this.currentStep === this.steps.length) {
                 return;
             }
-            this.currentStep = this.currentStep++;
+            this.currentStep++;
         },
         previousStep() {
             if (this.currentStep === 1) {
                 return;
             }
-            this.currentStep = this.currentStep--;
+            this.currentStep--;
         }
     },
     components: {
@@ -101,7 +145,8 @@ export default {
         ConfiguratorStep,
         ConfiguratorStepGroup,
         FormRadio,
-        DimensionInput
+        DimensionInput,
+        Button
     }
 }
 </script>

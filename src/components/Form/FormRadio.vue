@@ -59,7 +59,6 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-right: 15px;
 
     &__input {
         &:not(:checked) + .form-radio__label:after {
