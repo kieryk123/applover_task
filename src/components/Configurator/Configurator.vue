@@ -25,7 +25,6 @@
                                 v-model="door.type"
                                 value-to-set="single"
                             >Single door</FormRadio>
-
                             <FormRadio
                                 id="double-door-type"
                                 name="door-type"
@@ -70,17 +69,7 @@
                 <ConfiguratorStep v-if="currentStep === 2">
                     <ConfiguratorStepGroup>
                         <template #head>
-
-                        </template>
-
-                        <template #body>
-
-                        </template>
-                    </ConfiguratorStepGroup>
-
-                    <ConfiguratorStepGroup>
-                        <template #head>
-
+                            Door division
                         </template>
 
                         <template #body>
@@ -153,7 +142,7 @@ export default {
 
 <style lang="scss">
 .configurator {
-    max-width: 775px;
+    max-width: 890px;
     width: 100%;
 
     &__head {

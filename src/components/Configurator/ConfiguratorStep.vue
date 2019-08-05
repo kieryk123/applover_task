@@ -26,13 +26,15 @@ export default {
         bottom: 0;
         left: 0;
         right: 0;
+        display: flex;
+        flex-direction: row;
         width: 100%;
 
         & > * {
-            margin-bottom: 10px;
+            margin-right: 14px;
 
             &:last-child {
-                margin-bottom: 0;
+                margin-right: 0;
             }
         }
     }
