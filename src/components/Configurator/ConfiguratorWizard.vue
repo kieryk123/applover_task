@@ -5,11 +5,11 @@
             :key="index"
             :class="[
                 'config-wizard__step',
-                index === currentStep ? 'config-wizard__step--active' : ''
+                (index + 1) === currentStep ? 'config-wizard__step--active' : ''
             ]"
         >
             <div class="config-wizard__step-icon"></div>
-            <p class="config-wizard__step-title">step {{ index }}<br>{{ step }}</p>
+            <p class="config-wizard__step-title">step {{ index + 1 }}<br>{{ step }}</p>
         </div>
     </div>
 </template>
@@ -31,30 +31,52 @@ export default {
 
 <style lang="scss">
 .config-wizard {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    &:before {
-        position: absolute;
-        content: '';
-        top: 23px;
-        width: 85%;
-        height: 2px;
-        background-color: #EBF7FF;
-    }
-
     &__step {
+        position: relative;
+        z-index: 1;
         text-align: center;
         margin: 0 27px;
 
+        &:before {
+            position: absolute;
+            z-index: -1;
+            content: '';
+            top: 23px;
+            left: -70%;
+            width: 100%;
+            height: 2px;
+            background-color: #EBF7FF;
+        }
+
+        &:after {
+            position: absolute;
+            z-index: -1;
+            content: '';
+            top: 23px;
+            right: -70%;
+            width: 100%;
+            height: 2px;
+            background-color: #EBF7FF;
+        }
+
         &:first-child {
             margin-left: 0;
+
+            &:before {
+                display: none;
+            }
         }
 
         &:last-child {
             margin-right: 0;
+
+            &:after {
+                display: none;
+            }
         }
 
         &--active {

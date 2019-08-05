@@ -1,20 +1,15 @@
 <template>
-    <ConfigWizard
-        :current-step="currentStep"
-        :steps="configSteps"
-    />
+    <div class="app__page app__page--home">
+        <Configurator />
+    </div>
 </template>
 
 <script>
-import ConfigWizard from '@/components/ConfigWizard.vue';
+import Configurator from '@/components/Configurator/Configurator.vue';
 
 export default {
-    data: () => ({
-        configSteps: ['choose door', 'choose division', 'choose color'],
-        currentStep: 1
-    }),
     components: {
-        ConfigWizard
+        Configurator
     }
 }
 </script>
