@@ -46,6 +46,8 @@
                                 name="door-width"
                                 label="Width"
                                 unit="cm"
+                                :min="100"
+                                :max="160"
                             />
                             <DimensionInput
                                 v-model.number="configuration.height"
@@ -53,6 +55,8 @@
                                 name="door-width"
                                 label="Height"
                                 unit="cm"
+                                :min="220"
+                                :max="300"
                             />
                         </template>
                     </ConfiguratorStepGroup>

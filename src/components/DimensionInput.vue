@@ -9,8 +9,10 @@
                 :value="value"
                 inputmode="numeric"
                 class="dimension-input__input"
-                @input="$emit('input', $event.target.value)"
+                @input="onInput($event.target.value)"
                 @blur="$emit('blur')"
+                :min="min"
+                :max="max"
             >
             <span class="dimension-input__unit">{{ unit }}</span>
         </div>
@@ -38,6 +40,29 @@ export default {
         unit: {
             type: String,
             required: true
+        },
+        min: {
+            type: Number,
+            required: false
+        },
+        max: {
+            type: Number,
+            required: false
+        }
+    },
+    methods: {
+        onInput(value) {
+            value = Number(value);
+
+            if (value <= this.min) {
+                value = this.min;
+            }
+
+            if (value >= this.max) {
+                value = this.max;
+            }
+
+            this.$emit('input', value)
         }
     }
 }
