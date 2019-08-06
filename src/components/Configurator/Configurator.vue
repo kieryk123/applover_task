@@ -22,13 +22,13 @@
                             <FormRadio
                                 id="single-door-type"
                                 name="door-type"
-                                v-model="door.type"
+                                v-model="configuration.type"
                                 value-to-set="single"
                             >Single door</FormRadio>
                             <FormRadio
                                 id="double-door-type"
                                 name="door-type"
-                                v-model="door.type"
+                                v-model="configuration.type"
                                 value-to-set="double"
                             >Double door</FormRadio>
                         </template>
@@ -41,14 +41,14 @@
 
                         <template #body>
                             <DimensionInput
-                                v-model.number="door.width"
+                                v-model.number="configuration.width"
                                 id="door-width"
                                 name="door-width"
                                 label="Width"
                                 unit="cm"
                             />
                             <DimensionInput
-                                v-model.number="door.height"
+                                v-model.number="configuration.height"
                                 id="door-width"
                                 name="door-width"
                                 label="Height"
@@ -74,13 +74,13 @@
 
                         <template #body>
                             <CounterInput
-                                v-model.number="door.beams"
+                                v-model.number="configuration.beams"
                                 id="door-beams"
                                 name="door-beams"
                                 label="Number of beams"
                             />
                             <CounterInput
-                                v-model.number="door.posts"
+                                v-model.number="configuration.posts"
                                 id="door-posts"
                                 name="door-posts"
                                 label="Number of posts"
@@ -93,11 +93,37 @@
                             @click="previousStep"
                             modifier="configurator-outlined"
                         >back</Button>
-
                         <Button
                             @click="nextStep"
                             modifier="configurator"
                         >Next step</Button>
+                    </template>
+                </ConfiguratorStep>
+
+                <!-- ### STEP 3 ### -->
+                <ConfiguratorStep v-if="currentStep === 3">
+                    <ConfiguratorStepGroup>
+                        <template #head>
+                            Choose color
+                        </template>
+
+                        <template #body>
+                            <ColorPicker
+                                v-model="configuration.color"
+                                :colors="colors"
+                            />
+                        </template>
+                    </ConfiguratorStepGroup>
+
+                    <template #footer>
+                        <Button
+                            @click="previousStep"
+                            modifier="configurator-outlined"
+                        >back</Button>
+                        <Button
+                            @click="finishConfiguration"
+                            modifier="configurator"
+                        >Finish</Button>
                     </template>
                 </ConfiguratorStep>
             </div>
@@ -116,18 +142,34 @@ import FormRadio from '@/components/Form/FormRadio.vue';
 import DimensionInput from '@/components/DimensionInput.vue';
 import CounterInput from '@/components/CounterInput.vue';
 import Button from '@/components/Button.vue';
+import ColorPicker from '@/components/ColorPicker.vue';
 
 export default {
     data: () => ({
         steps: ['choose door', 'choose division', 'choose color'],
-        currentStep: 2,
-        door: {
+        currentStep: 3,
+        configuration: {
             type: 'single',
             width: 120,
             height: 250,
             beams: 4,
-            posts: 2
-        }
+            posts: 2,
+            color: '#000000'
+        },
+        colors: [
+            {
+                name: 'Black',
+                value: '#000000'
+            },
+            {
+                name: 'Gray',
+                value: '#797474'
+            },
+            {
+                name: 'White',
+                value: '#F4F2F2'
+            },
+        ]
     }),
     methods: {
         nextStep() {
@@ -141,6 +183,9 @@ export default {
                 return;
             }
             this.currentStep--;
+        },
+        finishConfiguration() {
+            console.log({...this.configuration});
         }
     },
     components: {
@@ -150,7 +195,8 @@ export default {
         FormRadio,
         DimensionInput,
         CounterInput,
-        Button
+        Button,
+        ColorPicker
     }
 }
 </script>
