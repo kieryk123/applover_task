@@ -3,12 +3,12 @@
         <tbody>
             <tr class="visualisation__head">
                 <td></td>
-                <td colspan="2" class="visualisation__ruler-wrapper">
+                <td colspan="2" class="visualisation__ruler-wrapper visualisation__ruler-wrapper--top">
                     <span class="visualisation__ruler visualisation__ruler--top">{{ doubleDoorWidth }}</span>
                 </td>
             </tr>
             <tr class="visualisation__body">
-                <td class="visualisation__ruler-wrapper">
+                <td class="visualisation__ruler-wrapper visualisation__ruler-wrapper--left">
                     <span class="visualisation__ruler visualisation__ruler--left">{{ configuration.height }}</span>
                 </td>
                 <td>
@@ -38,10 +38,10 @@
             </tr>
             <tr class="visualisation__footer">
                 <td></td>
-                <td class="visualisation__ruler-wrapper">
+                <td class="visualisation__ruler-wrapper visualisation__ruler-wrapper--bottom">
                     <span class="visualisation__ruler visualisation__ruler--bottom">{{ configuration.width }}</span>
                 </td>
-                <td v-if="isTypeDouble" class="visualisation__ruler-wrapper">
+                <td v-if="isTypeDouble" class="visualisation__ruler-wrapper visualisation__ruler-wrapper--bottom">
                     <span class="visualisation__ruler visualisation__ruler--bottom">{{ configuration.width }}</span>
                 </td>
             </tr>
@@ -84,7 +84,39 @@ export default {
 	}
 
     &__ruler-wrapper {
+        position: relative;
         text-align: center;
+
+        &--top,
+        &--bottom {
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+
+            &:before {
+                position: absolute;
+                content: '';
+                top: calc(50% - 0.5px);
+                left: 0;
+                height: 1px;
+                width: 100%;
+                background-color: black;
+            }
+        }
+
+        &--left {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+
+            &:before {
+                position: absolute;
+                content: '';
+                top: 0;
+                left: calc(50% - 0.5px);
+                height: 100%;
+                width: 1px;
+                background-color: black;
+            }
+        }
     }
 
 	&__ruler {
@@ -94,36 +126,6 @@ export default {
         border: 1px solid #848C93;
         padding: 1px 9px;
         background-color: white;
-
-        &--top {
-
-
-            // &:before {
-            //     position: absolute;
-            //     content: '';
-            //     left: 0;
-            //     top: 10px;
-            //     height: 1px;
-            //     width: 100%;
-            //     background-color: black;
-            // }
-        }
-
-        &--left {
-
-        }
-
-        &--bottom {
-
-        }
-	}
-
-	&__body {
-
-	}
-
-	&__footer {
-
 	}
 
     &__door {
