@@ -4,7 +4,7 @@
             <tr class="visualisation__head">
                 <td></td>
                 <td colspan="2" class="visualisation__ruler-wrapper">
-                    <span class="visualisation__ruler visualisation__ruler--top">{{ configuration.width }}</span>
+                    <span class="visualisation__ruler visualisation__ruler--top">{{ doubleDoorWidth }}</span>
                 </td>
             </tr>
             <tr class="visualisation__body">
@@ -13,24 +13,24 @@
                 </td>
                 <td>
                     <table
-                        class="door"
+                        class="visualisation__door"
                         :style="doorStyleProperties"
                     >
                         <tbody>
-                            <tr v-for="beam in configuration.beams" class="door__beam">
-                                <td v-for="post in configuration.posts" class="door__post"></td>
+                            <tr v-for="beam in configuration.beams" class="visualisation__door-beam">
+                                <td v-for="post in configuration.posts" class="visualisation__door-post"></td>
                             </tr>
                         </tbody>
                     </table>
                 </td>
                 <td v-if="isTypeDouble">
                     <table
-                        class="door"
+                        class="visualisation__door"
                         :style="doorStyleProperties"
                     >
                         <tbody>
-                            <tr v-for="beam in configuration.beams" class="door__beam">
-                                <td v-for="post in configuration.posts" class="door__post"></td>
+                            <tr v-for="beam in configuration.beams" class="visualisation__door-beam">
+                                <td v-for="post in configuration.posts" class="visualisation__door-post"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -67,11 +67,86 @@ export default {
                 height: `${this.configuration.height}px`,
                 color: this.configuration.color
             }
+        },
+        doubleDoorWidth() {
+            return this.isTypeDouble ? (this.configuration.width * 2) :  this.configuration.width;
         }
     },
 }
 </script>
 
 <style lang="scss">
+.visualisation {
+    border-collapse: collapse;
 
+	&__head {
+
+	}
+
+    &__ruler-wrapper {
+        text-align: center;
+    }
+
+	&__ruler {
+        position: relative;
+        display: inline-block;
+        font-size: 12px;
+        border: 1px solid #848C93;
+        padding: 1px 9px;
+        background-color: white;
+
+        &--top {
+
+
+            // &:before {
+            //     position: absolute;
+            //     content: '';
+            //     left: 0;
+            //     top: 10px;
+            //     height: 1px;
+            //     width: 100%;
+            //     background-color: black;
+            // }
+        }
+
+        &--left {
+
+        }
+
+        &--bottom {
+
+        }
+	}
+
+	&__body {
+
+	}
+
+	&__footer {
+
+	}
+
+    &__door {
+        table-layout: fixed;
+        border: 0;
+        max-width: 100%;
+        border-collapse: collapse;
+    }
+
+    &__door-beam {
+        border-bottom: 7px solid;
+
+        &:first-of-type {
+            border-top: 7px solid;
+        }
+    }
+
+    &__door-post {
+        border-right: 7px solid;
+
+        &:first-of-type {
+            border-left: 7px solid;
+        }
+    }
+}
 </style>
