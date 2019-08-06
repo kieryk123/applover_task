@@ -1,0 +1,22 @@
+.door {
+    table-layout: fixed;
+    border: 0;
+    max-width: 100%;
+    border-collapse: collapse;
+
+    &__beam {
+        border-bottom: 7px solid;
+
+        &:first-of-type {
+            border-top: 7px solid;
+        }
+    }
+
+    &__post {
+        border-right: 7px solid;
+
+        &:first-of-type {
+            border-left: 7px solid;
+        }
+    }
+}

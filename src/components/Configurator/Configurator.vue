@@ -7,8 +7,8 @@
             />
         </div>
         <div class="configurator__body">
-            <div class="configurator__visualization-wrapper">
-
+            <div class="configurator__visualisation-wrapper">
+                <ConfiguratorVisualisation :configuration="configuration" />
             </div>
             <div class="configurator__options-wrapper">
                 <!-- ### STEP 1 ### -->
@@ -136,6 +136,7 @@
 import ConfiguratorWizard from '@/components/Configurator/ConfiguratorWizard.vue';
 import ConfiguratorStep from '@/components/Configurator/ConfiguratorStep.vue';
 import ConfiguratorStepGroup from '@/components/Configurator/ConfiguratorStepGroup.vue';
+import ConfiguratorVisualisation from '@/components/Configurator/ConfiguratorVisualisation.vue';
 
 // other components
 import FormRadio from '@/components/Form/FormRadio.vue';
@@ -147,7 +148,7 @@ import ColorPicker from '@/components/ColorPicker.vue';
 export default {
     data: () => ({
         steps: ['choose door', 'choose division', 'choose color'],
-        currentStep: 3,
+        currentStep: 1,
         configuration: {
             type: 'single',
             width: 120,
@@ -192,6 +193,7 @@ export default {
         ConfiguratorWizard,
         ConfiguratorStep,
         ConfiguratorStepGroup,
+        ConfiguratorVisualisation,
         FormRadio,
         DimensionInput,
         CounterInput,
@@ -215,7 +217,10 @@ export default {
         flex-direction: row;
 	}
 
-	&__visualization-wrapper {
+	&__visualisation-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex-basis: 70%;
         max-width: 70%;
         min-height: 475px;
