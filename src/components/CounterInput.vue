@@ -11,6 +11,8 @@
                 ref="input"
                 v-model.number="counter"
                 @blur="$emit('blur')"
+                :min="min"
+                :max="max"
             >
             <button
                 class="counter-input__btn"
@@ -47,6 +49,14 @@ export default {
         label: {
             type: String,
             required: false
+        },
+        min: {
+            type: Number,
+            required: false
+        },
+        max: {
+            type: Number,
+            required: false
         }
     },
     methods: {
@@ -59,7 +69,18 @@ export default {
     },
     watch: {
         counter() {
-            this.$emit('input', this.counter);
+            let value = this.counter;
+            value = Number(value);
+
+            if (value <= this.min) {
+                value = this.min;
+            }
+
+            if (value >= this.max) {
+                value = this.max;
+            }
+
+            this.$emit('input', value);
         }
     }
 }

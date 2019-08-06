@@ -62,7 +62,7 @@ export default {
                 value = this.max;
             }
 
-            this.$emit('input', value)
+            this.$emit('input', value);
         }
     }
 }

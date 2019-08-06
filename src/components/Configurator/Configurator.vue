@@ -82,12 +82,16 @@
                                 id="door-beams"
                                 name="door-beams"
                                 label="Number of beams"
+                                :min="2"
+                                :max="4"
                             />
                             <CounterInput
                                 v-model.number="configuration.posts"
                                 id="door-posts"
                                 name="door-posts"
                                 label="Number of posts"
+                                :min="2"
+                                :max="4"
                             />
                         </template>
                     </ConfiguratorStepGroup>
