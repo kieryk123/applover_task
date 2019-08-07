@@ -9,7 +9,7 @@
             ]"
         >
             <div class="config-wizard__step-icon"></div>
-            <p class="config-wizard__step-title">step {{ index + 1 }}<br>{{ step }}</p>
+            <p class="config-wizard__step-title">{{ $t('step') }} {{ index + 1 }}<br>{{ step }}</p>
         </div>
     </div>
 </template>
@@ -121,5 +121,15 @@ export default {
         line-height: 1.35;
 	}
 }
-
 </style>
+
+<i18n>
+{
+    "en-US": {
+        "step": "Step"
+    },
+    "pl-PL": {
+        "step": "Krok"
+    }
+}
+</i18n>

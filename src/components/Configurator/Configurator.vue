@@ -15,7 +15,7 @@
                 <ConfiguratorStep v-if="currentStep === 1">
                     <ConfiguratorStepGroup>
                         <template #head>
-                            <span>Door type</span>
+                            <span>{{ $t('door_type') }}</span>
                         </template>
 
                         <template #body>
@@ -24,19 +24,19 @@
                                 name="door-type"
                                 v-model="configuration.type"
                                 value-to-set="single"
-                            >Single door</FormRadio>
+                            >{{ $t('single_door') }}</FormRadio>
                             <FormRadio
                                 id="double-door-type"
                                 name="door-type"
                                 v-model="configuration.type"
                                 value-to-set="double"
-                            >Double door</FormRadio>
+                            >{{ $t('double_door') }}</FormRadio>
                         </template>
                     </ConfiguratorStepGroup>
 
                     <ConfiguratorStepGroup>
                         <template #head>
-                            <span>Door size</span>
+                            <span>{{ $t('door_size') }}</span>
                         </template>
 
                         <template #body>
@@ -44,16 +44,16 @@
                                 v-model.number="configuration.width"
                                 id="door-width"
                                 name="door-width"
-                                label="Width"
+                                :label="$t('width')"
                                 unit="cm"
                                 :min="100"
                                 :max="160"
                             />
                             <DimensionInput
                                 v-model.number="configuration.height"
-                                id="door-width"
-                                name="door-width"
-                                label="Height"
+                                id="door-height"
+                                name="door-height"
+                                :label="$t('height')"
                                 unit="cm"
                                 :min="220"
                                 :max="300"
@@ -65,7 +65,7 @@
                         <Button
                             @click="nextStep"
                             modifier="configurator"
-                        >Next step</Button>
+                        >{{ $t('next_step') }}</Button>
                     </template>
                 </ConfiguratorStep>
 
@@ -73,7 +73,7 @@
                 <ConfiguratorStep v-if="currentStep === 2">
                     <ConfiguratorStepGroup>
                         <template #head>
-                            Door division
+                            {{ $t('door_division') }}
                         </template>
 
                         <template #body>
@@ -81,7 +81,7 @@
                                 v-model.number="configuration.beams"
                                 id="door-beams"
                                 name="door-beams"
-                                label="Number of beams"
+                                :label="$t('number_of_beams')"
                                 :min="2"
                                 :max="4"
                             />
@@ -89,7 +89,7 @@
                                 v-model.number="configuration.posts"
                                 id="door-posts"
                                 name="door-posts"
-                                label="Number of posts"
+                                :label="$t('number_of_posts')"
                                 :min="2"
                                 :max="4"
                             />
@@ -100,11 +100,11 @@
                         <Button
                             @click="previousStep"
                             modifier="configurator-outlined"
-                        >back</Button>
+                        >{{ $t('back') }}</Button>
                         <Button
                             @click="nextStep"
                             modifier="configurator"
-                        >Next step</Button>
+                        >{{ $t('next_step') }}</Button>
                     </template>
                 </ConfiguratorStep>
 
@@ -112,7 +112,7 @@
                 <ConfiguratorStep v-if="currentStep === 3">
                     <ConfiguratorStepGroup>
                         <template #head>
-                            Choose color
+                            {{ $t('choose_color') }}
                         </template>
 
                         <template #body>
@@ -125,14 +125,14 @@
 
                     <ConfiguratorStepGroup>
                         <template #head>
-                            Share configuration
+                            {{ $t('share_configuration') }}
                         </template>
 
                         <template #body>
                             <Button
                                 @click="createLinkToShare"
                                 modifier="configurator"
-                            >Share</Button>
+                            >{{ $t('share') }}</Button>
                         </template>
                     </ConfiguratorStepGroup>
 
@@ -140,11 +140,11 @@
                         <Button
                             @click="previousStep"
                             modifier="configurator-outlined"
-                        >back</Button>
+                        >{{ $t('back') }}</Button>
                         <Button
                             @click="finishConfiguration"
                             modifier="configurator"
-                        >Finish</Button>
+                        >{{ $t('finish') }}</Button>
                     </template>
                 </ConfiguratorStep>
             </div>
@@ -171,7 +171,6 @@ export default {
         this.checkQueryParams();
     },
     data: () => ({
-        steps: ['choose door', 'choose division', 'choose color'],
         currentStep: 1,
         configuration: {
             type: 'single',
@@ -180,22 +179,33 @@ export default {
             beams: 4,
             posts: 2,
             color: '#000000'
-        },
-        colors: [
-            {
-                name: 'Black',
-                value: '#000000'
-            },
-            {
-                name: 'Gray',
-                value: '#797474'
-            },
-            {
-                name: 'White',
-                value: '#F4F2F2'
-            },
-        ]
+        }
     }),
+    computed: {
+        steps() {
+            return [
+                this.$i18n.t('choose_door'),
+                this.$i18n.t('choose_division'),
+                this.$i18n.t('choose_color')
+            ];
+        },
+        colors() {
+            return [
+                {
+                    name: this.$i18n.t('black'),
+                    value: '#000000'
+                },
+                {
+                    name: this.$i18n.t('gray'),
+                    value: '#797474'
+                },
+                {
+                    name: this.$i18n.t('white'),
+                    value: '#F4F2F2'
+                },
+            ];
+        }
+    },
     methods: {
         nextStep() {
             if (this.currentStep === this.steps.length) {
@@ -216,7 +226,7 @@ export default {
             const { type, width, height, beams, posts, color } = this.configuration;
             const currentLink = location.protocol + '//' + location.host + location.pathname;
             const linkToShare = `${currentLink}?type=${type}&width=${width}&height=${height}&beams=${beams}&posts=${posts}&color=${color.substr(1)}`;
-            navigator.clipboard.writeText(linkToShare).then(() => alert('Copied to clipboard :)'));
+            navigator.clipboard.writeText(linkToShare).then(() => alert(`${this.$i18n.t('link_copied')} :)`));
         },
         checkQueryParams() {
             const query = this.$route.query;
@@ -281,3 +291,56 @@ export default {
 	}
 }
 </style>
+
+<i18n>
+{
+    "en-US": {
+        "choose_door": "Choose door",
+        "choose_division": "Choose division",
+        "choose_color": "Choose color",
+        "single_door": "Single door",
+        "double_door": "Double door",
+        "door_type": "Door type",
+        "door_size": "Door size",
+        "width": "Width",
+        "height": "Height",
+        "next_step": "Next step",
+        "back": "Back",
+        "door_division": "Door division",
+        "number_of_beams": "Number of beams",
+        "number_of_posts": "Number of posts",
+        "choose_color": "Choose color",
+        "black": "Black",
+        "gray": "Gray",
+        "white": "White",
+        "share_configuration": "Share configuration",
+        "share": "Share",
+        "finish": "Finish",
+        "link_copied": "Link copied to clipboard"
+    },
+    "pl-PL": {
+        "choose_door": "Wybierz drzwi",
+        "choose_division": "Wybierz podział",
+        "choose_color": "Wybierz kolor",
+        "single_door": "Pojedyncze drzwi",
+        "double_door": "Podwójne drzwi",
+        "door_type": "Typ drzwi",
+        "door_size": "Rozmiar drzwi",
+        "width": "Szerokość",
+        "height": "Wysokość",
+        "next_step": "Dalej",
+        "back": "Cofnij",
+        "door_division": "Podzial drzwi",
+        "number_of_beams": "Liczba belek",
+        "number_of_posts": "Liczba słupków",
+        "choose_color": "Wybierz kolor",
+        "black": "Czarny",
+        "gray": "Szary",
+        "white": "Biały",
+        "share_configuration": "Udostępnij konfigurację",
+        "share": "Udostępnij",
+        "finish": "Zakończ",
+        "link_copied": "Link został skopiowany do schowka"
+    }
+}
+</i18n>

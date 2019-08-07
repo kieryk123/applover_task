@@ -1,3 +1,5 @@
+import i18n from '@/i18n';
+
 export const namespaced = true;
 
 export const state = {
@@ -28,6 +30,10 @@ export const actions = {
         } else {
             commit('SET_LANGUAGE', 'en-US');
         }
+    },
+    setLanguage({ commit }, language) {
+        commit('SET_LANGUAGE', language);
+        i18n.locale = language;
     }
 };
 

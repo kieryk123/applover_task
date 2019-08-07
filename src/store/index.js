@@ -15,17 +15,5 @@ export default new Vuex.Store({
         locale,
         notification,
         organization
-    },
-    state: {
-
-    },
-    mutations: {
-
-    },
-    actions: {
-
-    },
-    getters: {
-
     }
 });

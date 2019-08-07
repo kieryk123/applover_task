@@ -1,3 +1,4 @@
+import i18n from '@/i18n';
 import OrganizationService from '@/services/OrganizationService';
 export const namespaced = true;
 
@@ -23,7 +24,7 @@ export const actions = {
             })
             .catch(err => {
                 console.log(err);
-                commit('notification/SET', 'Something went wrong...', { root: true });
+                commit('notification/SET', i18n.t('notification_sth_wrong'), { root: true });
             });
     }
 };

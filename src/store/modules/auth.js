@@ -1,4 +1,5 @@
 import router from '@/router';
+import i18n from '@/i18n';
 import AuthService from '@/services/AuthService.js';
 
 export const namespaced = true;
@@ -55,11 +56,11 @@ export const actions = {
 
                 switch (status) {
                     case 500:
-                        commit('notification/SET', 'Server error. Prease try again later.', { root: true });
+                        commit('notification/SET', i18n.t('signin_error_500'), { root: true });
                         dispatch('loading/reset', null, { root: true });
                         break;
                     case 401:
-                        commit('notification/SET', 'Invalid email or password.', { root: true });
+                        commit('notification/SET', i18n.t('signin_error_401'), { root: true });
                         dispatch('loading/reset', null, { root: true });
                     default:
                         break;

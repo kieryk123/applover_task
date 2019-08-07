@@ -10,7 +10,7 @@
             @close="$store.dispatch('notification/close')"
         />
         <AppHeader>
-            <span>Select language:</span>
+            <span>{{ $t('select_language') }}:</span>
             <Select
                 v-model="selectedLanguage"
                 :options="languagesList"
@@ -26,7 +26,7 @@
                         modifier="secondary"
                         small
                         @click="toggle"
-                    >My organization</Button>
+                    >{{ $t('my_organization') }}</Button>
                 </template>
                 <template #content>
                     <p
@@ -83,7 +83,7 @@ export default {
         ]),
         selectedLanguage: {
             set(language) {
-                this.$store.commit('locale/SET_LANGUAGE', language);
+                this.$store.dispatch('locale/setLanguage', language);
             },
             get() {
                 return this.$store.state['locale'].selectedLanguage;
@@ -144,3 +144,16 @@ export default {
     }
 }
 </style>
+
+<i18n>
+{
+    "en-US": {
+        "select_language": "Select language",
+        "my_organization": "My organization"
+    },
+    "pl-PL": {
+        "select_language": "Wybierz język",
+        "my_organization": "Moja organizacja"
+    }
+}
+</i18n>

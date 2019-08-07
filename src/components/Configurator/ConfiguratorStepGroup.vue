@@ -9,12 +9,6 @@
     </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style lang="scss">
 .configurator-step-group {
     margin-bottom: 20px;
@@ -36,5 +30,4 @@ export default {
         padding: 20px 0;
 	}
 }
-
 </style>

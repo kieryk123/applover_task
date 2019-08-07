@@ -1,0 +1,5 @@
+{
+  "signin_error_500": "Bląd serwera. Spróbuj ponownie później.",
+  "signin_error_401": "Nieprawidłowy email lub hasło.",
+  "notification_sth_wrong": "Coś poszło nie tak..."
+}
