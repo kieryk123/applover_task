@@ -216,7 +216,7 @@ export default {
             const { type, width, height, beams, posts, color } = this.configuration;
             const currentLink = location.protocol + '//' + location.host + location.pathname;
             const linkToShare = `${currentLink}?type=${type}&width=${width}&height=${height}&beams=${beams}&posts=${posts}&color=${color.substr(1)}`;
-            navigator.clipboard.writeText(linkToShare);
+            navigator.clipboard.writeText(linkToShare).then(() => alert('Copied to clipboard :)'));
         },
         checkQueryParams() {
             const query = this.$route.query;
