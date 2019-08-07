@@ -80,6 +80,7 @@ export default {
                 value = this.max;
             }
 
+            this.counter = value;
             this.$emit('input', value);
         }
     }
