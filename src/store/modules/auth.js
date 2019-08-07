@@ -66,7 +66,10 @@ export const actions = {
         const authToken = localStorage.getItem('authToken');
         if (!authToken) return;
         commit('AUTH_USER', authToken);
-        router.push('/');
+        router.push({
+            path: '/',
+            query: router.currentRoute.query
+        });
     }
 };
 

@@ -36,7 +36,10 @@ router.beforeEach((to, from, next) => {
             next();
             return;
         }
-        next('/login');
+        next({
+            path: '/login',
+            query: to.query
+        });
     } else {
         next();
     }

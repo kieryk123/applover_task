@@ -123,6 +123,19 @@
                         </template>
                     </ConfiguratorStepGroup>
 
+                    <ConfiguratorStepGroup>
+                        <template #head>
+                            Share configuration
+                        </template>
+
+                        <template #body>
+                            <Button
+                                @click="createLinkToShare"
+                                modifier="configurator"
+                            >Share</Button>
+                        </template>
+                    </ConfiguratorStepGroup>
+
                     <template #footer>
                         <Button
                             @click="previousStep"
@@ -154,6 +167,9 @@ import Button from '@/components/Button.vue';
 import ColorPicker from '@/components/ColorPicker.vue';
 
 export default {
+    created() {
+        this.checkQueryParams();
+    },
     data: () => ({
         steps: ['choose door', 'choose division', 'choose color'],
         currentStep: 1,
@@ -195,6 +211,28 @@ export default {
         },
         finishConfiguration() {
             console.log({...this.configuration});
+        },
+        createLinkToShare() {
+            const { type, width, height, beams, posts, color } = this.configuration;
+            const currentLink = location.protocol + '//' + location.host + location.pathname;
+            const linkToShare = `${currentLink}?type=${type}&width=${width}&height=${height}&beams=${beams}&posts=${posts}&color=${color.substr(1)}`;
+            navigator.clipboard.writeText(linkToShare);
+        },
+        checkQueryParams() {
+            const query = this.$route.query;
+            const isQueryEmpty = Object.getOwnPropertyNames(query).length === 0;
+            if (isQueryEmpty) {
+                return;
+            }
+            const configuration = {
+                type: query.type,
+                width: Number(query.width),
+                height: Number(query.height),
+                beams: Number(query.beams),
+                posts: Number(query.posts),
+                color: `#${query.color}`
+            };
+            this.configuration = configuration;
         }
     },
     components: {
