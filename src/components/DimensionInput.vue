@@ -6,11 +6,10 @@
                 type="number"
                 :id="id"
                 :name="name"
-                :value="value"
                 inputmode="numeric"
                 class="dimension-input__input"
-                @input="onInput($event.target.value)"
-                @blur="$emit('blur')"
+                v-model.number="localValue"
+                @blur="onBlur"
                 :min="min"
                 :max="max"
             >
@@ -21,6 +20,9 @@
 
 <script>
 export default {
+    created() {
+        this.localValue = this.value;
+    },
     props: {
         value: {
             required: true
@@ -50,8 +52,18 @@ export default {
             required: false
         }
     },
+    data: () => ({
+        localValue: 0
+    }),
     methods: {
-        onInput(value) {
+        onBlur() {
+            this.$emit('blur');
+            this.localValue = this.value;
+        }
+    },
+    watch: {
+        localValue() {
+            let value = this.localValue;
             value = Number(value);
 
             if (value <= this.min) {
