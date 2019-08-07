@@ -40,7 +40,11 @@ export const actions = {
                 commit('AUTH_USER', authToken);
                 dispatch('notification/close', null, { root: true });
                 dispatch('loading/reset', null, { root: true });
-                router.push('/');
+
+                router.push({
+                    path: '/',
+                    query: router.currentRoute.query
+                });
             })
             .catch(err => {
                 const res = err.response;
