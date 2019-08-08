@@ -11,6 +11,10 @@ const apiClient = axios.create({
 
 export default {
     getDetails() {
-        return apiClient.get('/v1/organization', { headers: { Authorization: store.state['auth'].authToken } });
+        return apiClient.get('/v1/organization', {
+            headers: {
+                Authorization: store.state['auth'].authToken
+            } 
+        });
     }
 }

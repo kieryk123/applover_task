@@ -1,7 +1,8 @@
 <template>
     <div class="toggle-switch">
         <button
-            v-for="button in buttons"
+            v-for="(button, index) in buttons"
+            :key="index"
             :class="[
                 'toggle-switch__btn',
                 value === button.value ? 'toggle-switch__btn--active' : ''
@@ -34,9 +35,6 @@ export default {
             required: true
         },
     },
-    data: () => ({
-
-    }),
     computed: {
         buttons() {
             const buttons = Object.freeze({
@@ -70,6 +68,10 @@ export default {
         padding: 3px 9px;
         border: 1px solid #6F91AA;
         background-color: #CBCBCB;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         &--active {
             background-color: white;
