@@ -96,7 +96,7 @@ export default {
 
 	&__label {
         font-size: 14px;
-        color: #848C93;
+        color: $font-color-primary;
         padding-right: 14px;
 	}
 
@@ -108,7 +108,7 @@ export default {
         min-width: 24px;
         width: 100%;
         border: 1px solid #A8A5A5;
-        color: #848C93;
+        color: $font-color-primary;
         font-size: 12px;
         padding: 4px 7px;
         margin-right: 4px;
@@ -122,7 +122,7 @@ export default {
 
 	&__btn {
         background-color: #CDDBE5;
-        color: #848C93;
+        color: $font-color-primary;
         border: 0;
         box-shadow: none;
         height: 24px;

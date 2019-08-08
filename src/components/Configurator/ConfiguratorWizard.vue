@@ -42,9 +42,8 @@ export default {
         margin: 0 27px;
 
         &:before {
-            position: absolute;
+            @include ps;
             z-index: -1;
-            content: '';
             top: 23px;
             left: -70%;
             width: 100%;
@@ -53,9 +52,8 @@ export default {
         }
 
         &:after {
-            position: absolute;
+            @include ps;
             z-index: -1;
-            content: '';
             top: 23px;
             right: -70%;
             width: 100%;
@@ -100,8 +98,7 @@ export default {
         border-radius: 100%;
 
         &:before {
-            position: absolute;
-            content: '';
+            @include ps;
             top: calc(50% - 3px);
             left: calc(50% - 3px);
             width: 6px;

@@ -51,8 +51,7 @@ export default {
         }
 
         &:before {
-            position: absolute;
-            content: '';
+            @include ps;
             height: 2px;
             width: 18px;
             background-color: white;
@@ -62,8 +61,7 @@ export default {
         }
 
         &:after {
-            position: absolute;
-            content: '';
+            @include ps;
             height: 2px;
             width: 18px;
             background-color: white;

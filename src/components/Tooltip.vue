@@ -58,8 +58,7 @@ export default {
         font-size: 14px;
 
         &:before {
-            position: absolute;
-            content: '';
+            @include ps;
             top: -7px;
             right: 10%;
             width: 0;

@@ -68,8 +68,7 @@ export default {
         }
 
         &:before {
-            position: absolute;
-            content: '';
+            @include ps;
             top: 9px;
             right: 10px;
             border-style: solid;

@@ -102,8 +102,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/main.scss';
-
 .app {
     flex-grow: 1;
     width: 100%;

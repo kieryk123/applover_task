@@ -15,7 +15,7 @@
 
 	&__head {
         font-size: 14px;
-        color: #848C93;
+        color: $font-color-primary;
         border-bottom: 1px solid rgba(#848C93, 0.2);
         padding-bottom: 5px;
 

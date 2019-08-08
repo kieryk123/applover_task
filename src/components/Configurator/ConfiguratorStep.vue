@@ -3,7 +3,6 @@
         <div class="configurator-step__body">
             <slot></slot>
         </div>
-
         <div class="configurator-step__footer">
             <slot name="footer"></slot>
         </div>

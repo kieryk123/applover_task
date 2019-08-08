@@ -194,7 +194,7 @@ export default {
             posts: 2,
             color: '#000000'
         },
-        threeDimensionView: true
+        threeDimensionView: false
     }),
     computed: {
         steps() {
@@ -358,7 +358,7 @@ export default {
         "height": "Wysokość",
         "next_step": "Dalej",
         "back": "Cofnij",
-        "door_division": "Podzial drzwi",
+        "door_division": "Podział drzwi",
         "number_of_beams": "Liczba belek",
         "number_of_posts": "Liczba słupków",
         "choose_color": "Wybierz kolor",

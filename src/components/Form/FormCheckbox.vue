@@ -61,8 +61,7 @@ export default {
         }
 
         &:before {
-            content: '';
-            position: absolute;
+            @include ps;
             top: 3px;
             left: 3px;
             width: 17px;

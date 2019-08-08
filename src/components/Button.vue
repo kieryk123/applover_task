@@ -53,17 +53,17 @@ export default {
     }
 
     &--primary {
-        background-color: #1DE278;
+        background-color: $btn-color-primary;
         color: white;
     }
 
     &--secondary {
-        background-color: #77779D;
+        background-color: $btn-color-secondary;
         color: white;
     }
 
     &--configurator {
-        background-color: #6F91AA;
+        background-color: $btn-color-configurator;
         color: white;
         text-transform: uppercase;
         padding: 6px 15px;
@@ -71,14 +71,14 @@ export default {
         font-size: 13px;
         min-height: 0;
         border-radius: 0;
-        border: 2px solid #6F91AA;
+        border: 2px solid $btn-color-configurator;
         min-width: 126px;
         width: auto;
     }
 
     &--configurator-outlined {
-        background-color: white;
-        color: #6F91AA;
+        background-color: $btn-color-configurator-outlined;
+        color: $btn-color-configurator;
         text-transform: uppercase;
         padding: 6px 15px;
         text-align: center;
@@ -86,7 +86,7 @@ export default {
         min-height: 0;
         border-radius: 0;
         min-width: 126px;
-        border: 2px solid #6F91AA;
+        border: 2px solid $btn-color-configurator;
         width: auto;
     }
 

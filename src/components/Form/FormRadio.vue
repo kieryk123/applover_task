@@ -87,11 +87,10 @@ export default {
         line-height: 20px;
         display: inline-block;
         font-size: 14px;
-        color: #848C93;
+        color: $font-color-primary;
 
         &:before {
-            position: absolute;
-            content: '';
+            @include ps;
             left: 0;
             top: 0;
             width: 12px;
@@ -102,8 +101,7 @@ export default {
         }
 
         &:after {
-            position: absolute;
-            content: '';
+            @include ps;
             width: 8px;
             height: 8px;
             background: #6991B2;

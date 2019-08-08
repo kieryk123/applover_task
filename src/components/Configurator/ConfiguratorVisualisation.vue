@@ -37,7 +37,7 @@
                         :style="doorStyleProperties"
                     >
                         <tbody>
-                            <tr 
+                            <tr
                                 v-for="(beam, index) in configuration.beams"
                                 :key="index"
                                 class="visualisation__door-beam"
@@ -110,8 +110,7 @@ export default {
             border-right: 1px solid black;
 
             &:before {
-                position: absolute;
-                content: '';
+                @include ps;
                 top: calc(50% - 0.5px);
                 left: 0;
                 height: 1px;
@@ -125,8 +124,7 @@ export default {
             border-bottom: 1px solid black;
 
             &:before {
-                position: absolute;
-                content: '';
+                @include ps;
                 top: 0;
                 left: calc(50% - 0.5px);
                 height: 100%;
