@@ -34,9 +34,9 @@ export const actions = {
                     localStorage.setItem('authToken', authToken);
                 }
 
-                console.log(res);
-                console.log(data);
-                console.log('status:', status);
+                // console.log(res);
+                // console.log(data);
+                // console.log('status:', status);
 
                 commit('AUTH_USER', authToken);
                 dispatch('notification/close', null, { root: true });
@@ -51,8 +51,8 @@ export const actions = {
                 const res = err.response;
                 const data = res.data;
                 const status = res.status;
-                console.log('data', data);
-                console.log('status:', status);
+                // console.log('data', data);
+                // console.log('status:', status);
 
                 switch (status) {
                     case 500:
@@ -67,7 +67,7 @@ export const actions = {
                 }
             });
     },
-    tryAutoSignIn({ commit, dispatch }) {
+    tryAutoSignIn({ commit }) {
         const authToken = localStorage.getItem('authToken');
         if (!authToken) return;
         commit('AUTH_USER', authToken);

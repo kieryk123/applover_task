@@ -2,6 +2,7 @@
     <div class="color-picker">
         <div
             v-for="(color, index) in colors"
+            :key="index"
             class="color-picker__box"
         >
             <div

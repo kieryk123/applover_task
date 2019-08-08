@@ -54,7 +54,6 @@ export default {
     methods: {
         submitForm() {
             this.$store.dispatch('auth/signIn', this.formData);
-            console.log({...this.formData});
         }
     },
     components: {
