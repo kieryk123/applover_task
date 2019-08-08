@@ -17,8 +17,16 @@
                         :style="doorStyleProperties"
                     >
                         <tbody>
-                            <tr v-for="beam in configuration.beams" class="visualisation__door-beam">
-                                <td v-for="post in configuration.posts" class="visualisation__door-post"></td>
+                            <tr
+                                v-for="(beam, index) in configuration.beams"
+                                :key="index"
+                                class="visualisation__door-beam"
+                            >
+                                <td
+                                    v-for="(post, index) in configuration.posts"
+                                    :key="index"
+                                    class="visualisation__door-post"
+                                ></td>
                             </tr>
                         </tbody>
                     </table>
@@ -29,8 +37,16 @@
                         :style="doorStyleProperties"
                     >
                         <tbody>
-                            <tr v-for="beam in configuration.beams" class="visualisation__door-beam">
-                                <td v-for="post in configuration.posts" class="visualisation__door-post"></td>
+                            <tr 
+                                v-for="(beam, index) in configuration.beams"
+                                :key="index"
+                                class="visualisation__door-beam"
+                            >
+                                <td
+                                    v-for="(post, index) in configuration.posts"
+                                    :key="index"
+                                    class="visualisation__door-post"
+                                ></td>
                             </tr>
                         </tbody>
                     </table>
@@ -77,11 +93,12 @@ export default {
 
 <style lang="scss">
 .visualisation {
-    border-collapse: collapse;
+    position: absolute;
+    bottom: 86px;
 
-	&__head {
+    &__body {
 
-	}
+    }
 
     &__ruler-wrapper {
         position: relative;

@@ -7,7 +7,20 @@
             />
         </div>
         <div class="configurator__body">
-            <div class="configurator__visualisation-wrapper">
+            <div
+                :class="[
+                    'configurator__visualisation-wrapper',
+                    threeDimensionView ? 'configurator__visualisation-wrapper--3d' : ''
+                ]"
+            >
+                <ToggleSwitch
+                    v-model="threeDimensionView"
+                    class="configurator__switch"
+                    left-label="3D"
+                    :left-value="true"
+                    right-label="2D"
+                    :right-value="false"
+                />
                 <ConfiguratorVisualisation :configuration="configuration" />
             </div>
             <div class="configurator__options-wrapper">
@@ -165,6 +178,7 @@ import DimensionInput from '@/components/DimensionInput.vue';
 import CounterInput from '@/components/CounterInput.vue';
 import Button from '@/components/Button.vue';
 import ColorPicker from '@/components/ColorPicker.vue';
+import ToggleSwitch from '@/components/ToggleSwitch.vue';
 
 export default {
     created() {
@@ -179,7 +193,8 @@ export default {
             beams: 4,
             posts: 2,
             color: '#000000'
-        }
+        },
+        threeDimensionView: true
     }),
     computed: {
         steps() {
@@ -254,7 +269,8 @@ export default {
         DimensionInput,
         CounterInput,
         Button,
-        ColorPicker
+        ColorPicker,
+        ToggleSwitch
     }
 }
 </script>
@@ -274,6 +290,7 @@ export default {
 	}
 
 	&__visualisation-wrapper {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -282,7 +299,18 @@ export default {
         min-height: 475px;
         border: 1px solid #E6E6E6;
         padding: 25px;
+
+        &--3d {
+            background-image: url('../../images/room.png');
+            background-position: -140px -109px;
+        }
 	}
+
+    &__switch {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
 
 	&__options-wrapper {
         flex-basis: 30%;
